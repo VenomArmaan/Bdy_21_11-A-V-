@@ -147,7 +147,6 @@
 
     .love { color: #ffeaa7; }
 
-    /* Mobile fix for overlapping */
     @media (max-width: 450px) {
       .photo-box {
         width: 110px;
@@ -186,6 +185,30 @@
       font-size: 0.9em;
       z-index: 2;
     }
+
+    /* Play Button */
+    #playBtn {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 22px;
+      border: none;
+      border-radius: 30px;
+      background: #ff9ff3;
+      color: #fff;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255,255,255,0.6);
+      z-index: 10;
+      transition: 0.3s;
+    }
+
+    #playBtn:hover {
+      transform: translateX(-50%) scale(1.05);
+    }
+
   </style>
 </head>
 <body>
@@ -219,8 +242,12 @@
     <span class="love">(your loved one✨)</span>
   </div>
 
-  <audio autoplay loop hidden>
-    <source src="happy-birthday-357371.mp3" type="audio/mpeg">
+  <!-- Play Music Button -->
+  <button id="playBtn">🎵 Play Music</button>
+
+  <!-- Audio -->
+  <audio id="bgMusic">
+    <source src="audio.mp3" type="audio/mp4">
   </audio>
 
   <script>
@@ -235,6 +262,17 @@
       confetti.style.opacity = Math.random();
       document.body.appendChild(confetti);
     }
+
+    // Music Button Script
+    const playBtn = document.getElementById("playBtn");
+    const bgMusic = document.getElementById("bgMusic");
+
+    playBtn.addEventListener("click", () => {
+      bgMusic.play();
+      playBtn.innerText = "🎶 Playing...";
+      playBtn.disabled = true;
+      playBtn.style.opacity = "0.7";
+    });
   </script>
 
   <div class="footer">
